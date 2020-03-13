@@ -4,32 +4,33 @@ using namespace std;
  
 int distinctYear(int y)
 {
-    int temp,i;
-    for(i=0;i<3;i++)
+    int temp,i,j;
+    for(i=3;i>0;i--)
     {
         temp=y/(pow(10,i));
         int a=temp%10;
-        int j;
-        for(j=0;j<3-i;j++)
+        for(j=i-1;j>=0;j--)
         {
-            temp/=10;
+            temp=y/(pow(10,j));
             if(a==temp%10)
             {
                 break;
             }
         }
-        if(j!=3-i)
+        if(j!=-1)
         {
             break;
         }
     }
-    if(i==3)
+    if(i==0)
     {
         return y;
     }
-    y+=pow(10,i);
+    int multi=pow(10,j);
+    y=y-y%multi+multi;
     return distinctYear(y);
 }
+
 int main()
 {
     int year;
