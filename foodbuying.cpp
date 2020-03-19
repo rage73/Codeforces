@@ -2,19 +2,18 @@
 using namespace std;
 // https://codeforces.com/contest/1296/problem/B
 
-long maxCashback(long temp)
+typedef long long ll;
+
+ll maxCashback(ll temp)
 {
+    //cout<<temp<<endl;
     if(temp<10)
     {
         return 0;
     }
-    long sum=temp;
-    while(temp!=0)
-    {
-        sum+=(long)(temp/10);
-        temp/=10;
-    }
-    return (sum/10);
+    ll cb=temp/10;
+    temp-=10*cb;
+    return cb+maxCashback(temp+cb);
 }
 int main()
 {
@@ -22,7 +21,7 @@ int main()
     cin>>t;
     while(t--)
     {
-        long s;
+        ll s;
         cin>>s;
         cout<<s+maxCashback(s)<<endl;
     }
