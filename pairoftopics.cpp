@@ -4,18 +4,17 @@ using namespace std;
  
 typedef long long ll;
 
-int goodSubs(int a[],int b[],int n)
+ll goodSubs(vector<int> a,int n)
 {
-    int count=0;
-    for(int i=0;i<n-1;i++)
+    ll count=0;
+    sort(a.begin(),a.end());
+    for(int i=0;i<n;i++)
     {
-        for(int j=i+1;j<n;j++)
+        if(a[i]>0)
         {
-            if(a[i]+a[j]>b[i]+b[j])
-            {
-                count++;
-            }
-        }
+            int j=lower_bound(a.begin(),a.end(),-a[i]+1)-a.begin();
+            count+=(i-j);
+        }   
     }
     return count;
 }
@@ -27,15 +26,19 @@ int main()
 
     int n;
     cin>>n;
-    int a[n],b[n];
+    vector<int> a;
     for(int i=0;i<n;i++)
     {
-        cin>>a[i];
+        int j;
+        cin>>j;
+        a.push_back(j);
     }
     for(int i=0;i<n;i++)
     {
-        cin>>b[i];
+        int k;
+        cin>>k;
+        a[i]=a[i]-k;
     }
-    cout<<goodSubs(a,b,n);
+    cout<<goodSubs(a,n);
     return 0;
 }
