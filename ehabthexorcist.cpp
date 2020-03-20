@@ -17,8 +17,9 @@ int main()
         {
             cout<<0;
         }
-        else{
-        cout<<1<<endl<<u;
+        else
+        {
+            cout<<1<<endl<<u;
         }
     }
     else if(v-u<0)
@@ -27,18 +28,14 @@ int main()
     }
     else if((v-u)%2==0)
     {
-        ll half=(v-u)/2,i;
-        for(i=1;i<v;i++)
+        ll x=(v-u)/2;
+        if(!(x&u))
         {
-            if((i^(v-i))==u)
-            {
-                cout<<2<<endl<<i<<" "<<v-i;
-                break;
-            }
+            cout<<2<<endl<<u+x<<" "<<x;
         }
-        if(i==v)
+        else
         {
-            cout<<3<<endl<<half<<" "<<half<<" "<<u;
+            cout<<3<<endl<<x<<" "<<x<<" "<<u;
         }
     }
     else
