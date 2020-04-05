@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-// http://m3.codeforces.com/contest/1330/problem/A
+// https://codeforces.com/contest/1330/problem/A
 
 #define ll			long long
 #define pb			push_back
@@ -11,29 +11,33 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+    cout.tie(NULL);
     
     int t;
     cin>>t;
     while(t--)
     {
-        int n,x;
-        cin>>n>>x;
-        int a[n];
-        for(int i=0;i<n;i++)
+        int s,x;
+        cin>>s>>x;
+        set<int> a;
+        for(int i=0;i<s;i++)
         {
-            cin>>a[i];
+            int t;
+            cin>>t;
+            a.insert(t);
         }
-        sort(a,a+n);
-        int find=1,ans=1,i=0;
-        while(i<n && x>0)
+        int n=a.size();
+        int find=1,ans=1;
+        auto it=a.begin();
+        while(it!=a.end() && x>0)
         {
-            if(a[i]==find)
+            if(*it==find)
             {
                 ans=find;
                 find++;
-                i++;
+                it++;
             }
-            else if(a[i]>find)
+            else if(*it>find)
             {
                 x--;
                 ans=find;
@@ -41,7 +45,7 @@ int main()
             }
             else
             {
-                i++;
+                it++;
             }
         }
         while(x>0)
@@ -49,11 +53,11 @@ int main()
             ans++;
             x--;
         }
-        while(i<n && a[i]==find)
+        while(it!=a.end() && *it==find)
         {
             ans=find;
             find++;
-            i++;
+            it++;
         }
         cout<<ans<<endl;
     }
